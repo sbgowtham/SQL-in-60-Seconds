@@ -1,0 +1,28 @@
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    order_status VARCHAR(50),
+    order_amount DECIMAL(10, 2),
+    created_at DATETIME
+);
+
+
+explain SELECT * FROM orders ORDER BY created_at  ;
+
+explain SELECT order_id FROM orders ORDER BY created_at;
+
+explain SELECT order_id FROM orders where created_at='2025-06-08 09:10:37' ;
+ 
+explain SELECT * FROM orders where created_at='2025-06-08 09:10:37' ORDER BY created_at;
+
+---------------------------------------------------
+CREATE INDEX idx_order_status ON orders(created_at);
+---------------------------------------------------
+
+explain SELECT * FROM orders ORDER BY created_at;
+
+explain SELECT order_id FROM orders ORDER BY created_at;
+
+explain SELECT order_id FROM orders where created_at='2025-06-08 09:10:37' ;
+ 
+explain SELECT * FROM orders where created_at='2025-06-08 09:10:37' ORDER BY created_at;
