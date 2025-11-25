@@ -1,0 +1,39 @@
+COUNT(*), COUNT(1), COUNT(<column>), COUNT(DISTINCT <column>)
+
+
+CREATE TABLE orders_demo (
+  id INT PRIMARY KEY,
+  customer_id INT,
+  amount DECIMAL(8,2),
+  status VARCHAR(20)
+);
+
+INSERT INTO orders_demo (id, customer_id, amount, status) VALUES
+(1, 100, 250.00, 'shipped'),
+(2, 101, 150.00, 'pending'),
+(3, 102, 300.00, 'shipped'),
+(4, NULL, 120.00, 'cancelled'),
+(5, 100, NULL, 'pending'),
+(6, 103, 200.00, NULL),
+(7, 101, 180.00, 'shipped'),
+(8, NULL, NULL, NULL),
+(9, 100, 250.00, 'shipped');
+
+
+
+SELECT COUNT(*) AS cnt_star FROM orders_demo;
+SELECT COUNT(1) AS cnt_one FROM orders_demo;
+SELECT COUNT(customer_id) AS cnt_customerid FROM orders_demo;
+SELECT COUNT(amount) AS cnt_amount FROM orders_demo;
+SELECT COUNT(status) AS cnt_status FROM orders_demo;
+SELECT COUNT(DISTINCT customer_id) AS cnt_distinct_customer FROM orders_demo;
+
+Final 
+
+SELECT
+  COUNT(*)              AS total_rows,
+  COUNT(1)              AS count_one,
+  COUNT(customer_id)    AS non_null_customers,
+  COUNT(DISTINCT customer_id) AS distinct_customers,
+  COUNT(amount)         AS non_null_amounts
+FROM orders_demo;
